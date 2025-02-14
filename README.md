@@ -1,16 +1,10 @@
-# proyectoinicial
+# **DOCUMENTO EXPLICATIVO DE LA APLICACIÓN**
 
-A new Flutter project.
+## **OBJETIVO**
 
-## Getting Started
+El objetivo de la aplicación es permitir al usuario realizar compras desde la comodidad de casa. Ofreciendo una amplia variedad de tiendas en las que realizar compras extendiendose esta fuera de tiendas de alimentos.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## **DESCRIPCIÓN**
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+La aplicacón consiste en un menú principal en el que aparecerán las diferentes tiendas a las que realizar los pedidos, funciones para consultar la cuenta del usuario, sus pedidos y las tiendas marcadas como favoritas. Además se incluye una barra inferior en la que se ofrecerán funciones para filtrar las tiendas en función del producto que ofrecen y para buscar las tiendas por nombre.
