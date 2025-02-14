@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -97,7 +99,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Colors.black,
                     size: 30,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    exit(0);
+                  },
                   tooltip: "Salir",
                   alignment: AlignmentDirectional.bottomEnd,
                 ),
