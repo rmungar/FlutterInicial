@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -5,11 +7,14 @@ void main() {
   runApp(const MyApp());
 }
 
+/// Clase principal de la aplicación.
+/// Inicializa la aplicación y establece la orientación preferida en vertical.
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Restringe la orientación del dispositivo a solo vertical
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
@@ -27,6 +32,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
+/// Página principal con un estado asociado.
+/// Muestra una lista de generaciones en números romanos y una barra de navegación inferior.
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -61,6 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Barra de navegación superior con un botón de configuración
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 220, 220, 220),
         title: Text(widget.title),
@@ -79,6 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   )),
         ],
       ),
+      // Menú lateral derecho (drawer) con diferentes opciones
       endDrawer: Drawer(
         child: Column(children: [
           _buildDrawerItem(Icons.favorite, "Favoritos"),
@@ -116,9 +125,10 @@ class _MyHomePageState extends State<MyHomePage> {
           ]),
         ]),
       ),
+      // Cuerpo de la aplicación con una lista de generaciones
       body: Center(
         child: ListView.builder(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           itemCount: 9,
           itemBuilder: (context, index) {
             return Card(
@@ -130,18 +140,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "${numerosRomanos[index]} Generación",
+                      tiendas[index],
                       style: const TextStyle(
-                        fontFamily: "Times New Roman",
                         color: Colors.black,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
-                    ),
-                    const SizedBox(width: 16),
-                    const Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      color: Colors.black,
                     ),
                   ],
                 ),
@@ -150,6 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
           },
         ),
       ),
+      // Botón flotante con el logo de la aplicación
       floatingActionButton: SizedBox(
           width: 60,
           height: 60,
@@ -162,6 +167,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Image.asset('assets/logo.png', width: 80, height: 80),
           )),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // Barra de navegación inferior con opciones de filtrado y búsqueda
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         notchMargin: 8.0,
@@ -195,6 +201,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  /// Construye un elemento del drawer con un icono, un título y un elemento opcional.
   Widget _buildDrawerItem(IconData icon, String title, [String? trailing]) {
     return ListTile(
       leading: Icon(icon, color: Colors.black),
