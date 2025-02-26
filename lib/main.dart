@@ -18,10 +18,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Proyecto Inicial',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 255, 0, 0)),
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromARGB(255, 255, 0, 0)),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Inicio'),
+      home: const LoginPage(title: "Inicio de sesión"),
     );
   }
 }
@@ -35,12 +36,27 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key, required this.title});
+
+  final String title;
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
 class _MyHomePageState extends State<MyHomePage> {
-
   static const numerosRomanos = [
-    "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"
+    "I",
+    "II",
+    "III",
+    "IV",
+    "V",
+    "VI",
+    "VII",
+    "VIII",
+    "IX"
   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -50,63 +66,60 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         actions: <Widget>[
           Builder(
-            builder: (context) => IconButton(
-              icon: const Icon(
-                Icons.settings,
-                color: Colors.black,
-                size: 30,
-              ),
-              onPressed: () {
-                Scaffold.of(context).openEndDrawer();
-              },
-              tooltip: "Configuración",
-            )
-          ),
+              builder: (context) => IconButton(
+                    icon: const Icon(
+                      Icons.settings,
+                      color: Colors.black,
+                      size: 30,
+                    ),
+                    onPressed: () {
+                      Scaffold.of(context).openEndDrawer();
+                    },
+                    tooltip: "Configuración",
+                  )),
         ],
       ),
       endDrawer: Drawer(
-        child: Column(
-          children: [
-            _buildDrawerItem(Icons.favorite, "Favoritos"),
-            _buildDrawerItem(Icons.account_box_outlined, "Cuenta de usuario"),
-            _buildDrawerItem(Icons.mail, "Notificaciones", "24", ),
-            _buildDrawerItem(Icons.bug_report_outlined, "Reportar un bug"),
-            
-            const Divider(
-              color: Color.fromARGB(150, 0, 0, 0),
-            ),
-            const Padding(
-              padding: EdgeInsets.all(16.0),
-            ),
+        child: Column(children: [
+          _buildDrawerItem(Icons.favorite, "Favoritos"),
+          _buildDrawerItem(Icons.account_box_outlined, "Cuenta de usuario"),
+          _buildDrawerItem(
+            Icons.mail,
+            "Notificaciones",
+            "24",
+          ),
+          _buildDrawerItem(Icons.bug_report_outlined, "Reportar un bug"),
+          const Divider(
+            color: Color.fromARGB(150, 0, 0, 0),
+          ),
+          const Padding(
+            padding: EdgeInsets.all(16.0),
+          ),
+          SizedBox(
+            width: double.infinity,
+            height: 423,
+          ),
+          Row(children: [
             SizedBox(
-              width: double.infinity,
-              height: 423,
+              width: 258,
             ),
-            
-            Row(
-              children: [
-                SizedBox(
-                  width: 258,
-                ),
-                IconButton(
-                  icon: const Icon(
-                    Icons.logout,
-                    color: Colors.black,
-                    size: 30,
-                  ),
-                onPressed: () {},
-                tooltip: "Salir",
-                alignment: AlignmentDirectional.bottomEnd,
-                ),
-              ]
+            IconButton(
+              icon: const Icon(
+                Icons.logout,
+                color: Colors.black,
+                size: 30,
+              ),
+              onPressed: () {},
+              tooltip: "Salir",
+              alignment: AlignmentDirectional.bottomEnd,
             ),
-          ]
-        ),
+          ]),
+        ]),
       ),
       body: Center(
         child: ListView.builder(
           padding: EdgeInsets.all(16.0),
-          itemCount: 9, 
+          itemCount: 9,
           itemBuilder: (context, index) {
             return Card(
               color: const Color.fromARGB(255, 220, 220, 220),
@@ -137,19 +150,17 @@ class _MyHomePageState extends State<MyHomePage> {
           },
         ),
       ),
-
       floatingActionButton: SizedBox(
-        width: 60,
-        height: 60,
-        child: FloatingActionButton(
-          onPressed: () {},
-          shape: const CircleBorder(),
-          backgroundColor: const Color.fromARGB(0, 255, 255, 255),
-          elevation: 8,
-          tooltip: "Inicio",
-          child: Image.asset('assets/logo.png', width: 80, height: 80),
-        )
-      ),
+          width: 60,
+          height: 60,
+          child: FloatingActionButton(
+            onPressed: () {},
+            shape: const CircleBorder(),
+            backgroundColor: const Color.fromARGB(0, 255, 255, 255),
+            elevation: 8,
+            tooltip: "Inicio",
+            child: Image.asset('assets/logo.png', width: 80, height: 80),
+          )),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
@@ -188,8 +199,39 @@ class _MyHomePageState extends State<MyHomePage> {
     return ListTile(
       leading: Icon(icon, color: Colors.black),
       title: Text(title, style: const TextStyle(color: Colors.black)),
-      trailing: trailing != null ? Text(trailing, style: const TextStyle(color: Colors.black)) : null,
+      trailing: trailing != null
+          ? Text(trailing, style: const TextStyle(color: Colors.black))
+          : null,
       onTap: () {},
+    );
+  }
+}
+
+class _LoginPageState extends State<LoginPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Iniciar sesión"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text("Iniciar sesión"),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const MyHomePage(title: "Inicio")),
+                );
+              },
+              child: const Text("Iniciar"),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
